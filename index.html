@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carats & Connections — Masterminds in Luxury Jewelry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #0e0c0a; --cream: #f7f3ed; --gold: #b8922a;
+    --gold-light: #d4af6a; --gold-pale: #f0e4c8; --charcoal: #2a2520; --mid: #6b6258;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  .hero { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; background: var(--ink); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 80% 20%, rgba(184,146,42,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 10% 80%, rgba(184,146,42,0.07) 0%, transparent 60%); pointer-events: none; }
+
+  a { color: inherit; text-decoration: none; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 2.4rem 5vw; position: relative; z-index: 10; }
+  .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.1rem; color: var(--gold-light); letter-spacing: 0.2em; text-transform: uppercase; }
+  .nav-work { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(212,175,106,0.5); text-decoration: none; transition: color 0.3s ease; }
+  .nav-work:hover { color: var(--gold-light); }
+  .nav-cta { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); border: 1px solid rgba(212,175,106,0.4); padding: 0.6rem 1.4rem; text-decoration: none; transition: all 0.3s ease; }
+  .nav-cta:hover { background: rgba(212,175,106,0.1); border-color: var(--gold-light); }
+
+  .hero-center { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 5vw; position: relative; z-index: 10; }
+  .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(4.5rem, 11vw, 10rem); line-height: 0.95; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+  .hero-title em { font-style: italic; color: var(--gold-light); }
+  .hero-amp { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(2.8rem, 6vw, 6rem); color: var(--gold); display: block; margin-bottom: 0.2rem; }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1rem, 2.5vw, 1.5rem); color: rgba(247,243,237,0.5); letter-spacing: 0.25em; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 3rem; }
+  .hero-desc { max-width: 520px; font-size: 0.85rem; line-height: 1.9; color: rgba(247,243,237,0.6); letter-spacing: 0.04em; margin-bottom: 3.5rem; }
+  .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary { background: var(--gold); color: var(--ink); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; padding: 1rem 2.4rem; border: none; cursor: pointer; text-decoration: none; transition: all 0.3s ease; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary { color: var(--cream); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.4rem; border: 1px solid rgba(247,243,237,0.25); text-decoration: none; transition: all 0.3s ease; display: inline-block; }
+  .btn-secondary:hover { border-color: rgba(247,243,237,0.6); }
+
+  .hero-bottom { display: flex; justify-content: center; padding: 2rem 5vw 3rem; position: relative; z-index: 10; }
+  .platform-row { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .platform-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(247,243,237,0.3); }
+  .platform-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(212,175,106,0.35); display: inline-block; }
+  .platform-name { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,237,0.4); }
+
+  .gold-rule { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
+
+  .about { background: var(--cream); padding: 8rem 5vw; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+  @media (max-width: 768px) { .about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 5vw; } }
+  .about-label { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .about-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.15; color: var(--charcoal); margin-bottom: 2rem; }
+  .about-title em { font-style: italic; color: var(--gold); }
+  .about-body { font-size: 0.85rem; line-height: 2; color: var(--mid); margin-bottom: 1.5rem; }
+  .about-host { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(184,146,42,0.2); }
+  .host-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--charcoal); margin-bottom: 0.3rem; }
+  .host-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+  .quote-card { background: var(--charcoal); padding: 3.5rem; position: relative; }
+  .quote-card::before { content: '\201C'; font-family: 'Cormorant Garamond', serif; font-size: 8rem; color: var(--gold); opacity: 0.2; position: absolute; top: -1rem; left: 2rem; line-height: 1; }
+  .quote-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; line-height: 1.6; color: var(--cream); font-weight: 300; position: relative; z-index: 1; }
+  .quote-source { margin-top: 1.5rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); }
+  .quote-accent { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 80px; height: 80px; border: 1px solid rgba(184,146,42,0.3); }
+
+  .topics { background: var(--charcoal); padding: 8rem 5vw; }
+  .topics-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 5rem; }
+  .section-label { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); color: var(--cream); line-height: 1.2; }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: rgba(212,175,106,0.15); }
+  .topic-card { background: var(--charcoal); padding: 2.8rem 2.4rem; transition: background 0.3s ease; }
+  .topic-card:hover { background: #332e28; }
+  .topic-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: rgba(212,175,106,0.2); line-height: 1; margin-bottom: 1rem; }
+  .topic-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 0.8rem; line-height: 1.3; }
+  .topic-body { font-size: 0.78rem; line-height: 1.8; color: rgba(247,243,237,0.45); }
+
+  .listeners { background: var(--cream); padding: 8rem 5vw; }
+  .listeners-inner { max-width: 1200px; margin: 0 auto; }
+  .listeners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; margin-top: 4rem; }
+  .listener-item { border-top: 1px solid rgba(184,146,42,0.3); padding-top: 1.5rem; }
+  .listener-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--charcoal); margin-bottom: 0.6rem; }
+  .listener-body { font-size: 0.78rem; line-height: 1.8; color: var(--mid); }
+
+  .notify { background: var(--ink); padding: 8rem 5vw; text-align: center; position: relative; overflow: hidden; }
+  .notify::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,146,42,0.08) 0%, transparent 70%); pointer-events: none; }
+  .notify-inner { max-width: 560px; margin: 0 auto; position: relative; z-index: 1; }
+  .notify-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--cream); line-height: 1.15; margin-bottom: 1.2rem; }
+  .notify-title em { font-style: italic; color: var(--gold-light); }
+  .notify-body { font-size: 0.82rem; line-height: 1.9; color: rgba(247,243,237,0.5); margin-bottom: 3rem; }
+  .notify-form { display: flex; max-width: 440px; margin: 0 auto; }
+  .notify-input { flex: 1; background: rgba(247,243,237,0.06); border: 1px solid rgba(212,175,106,0.3); border-right: none; padding: 1rem 1.4rem; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; color: var(--cream); outline: none; letter-spacing: 0.05em; }
+  .notify-input::placeholder { color: rgba(247,243,237,0.3); }
+  .notify-input:focus { border-color: rgba(212,175,106,0.6); }
+  .notify-btn { background: var(--gold); color: var(--ink); border: none; padding: 1rem 1.8rem; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: background 0.3s ease; white-space: nowrap; }
+  .notify-btn:hover { background: var(--gold-light); }
+  .notify-note { margin-top: 1.2rem; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(247,243,237,0.25); }
+
+  footer { background: var(--ink); border-top: 1px solid rgba(212,175,106,0.15); padding: 2.5rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: rgba(212,175,106,0.5); letter-spacing: 0.2em; text-transform: uppercase; }
+  .footer-copy { font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(247,243,237,0.2); }
+
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* Fallback: ensure content is visible if JS doesn't fire */
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <nav>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 44" height="44">
+      <!-- Left horizontal rule -->
+      <line x1="0" y1="22" x2="52" y2="22" stroke="#b8922a" stroke-width="0.5" opacity="0.5"/>
+      <!-- Right horizontal rule -->
+      <line x1="108" y1="22" x2="160" y2="22" stroke="#b8922a" stroke-width="0.5" opacity="0.5"/>
+      <!-- Outer octagonal badge -->
+      <path d="M68,2 L92,2 L96,6 L96,38 L92,42 L68,42 L64,38 L64,6 Z" fill="none" stroke="#b8922a" stroke-width="1.8" opacity="0.85"/>
+      <!-- Inner inset -->
+      <path d="M70,5 L90,5 L93,8 L93,36 L90,39 L70,39 L67,36 L67,8 Z" fill="none" stroke="#d4af6a" stroke-width="0.7" opacity="0.45"/>
+      <!-- C top — white -->
+      <text x="80" y="18" font-family="Cormorant Garamond, serif" font-weight="500" font-size="12" fill="#f7f3ed" text-anchor="middle">C</text>
+      <!-- Ampersand -->
+      <text x="80" y="27" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="300" font-size="7" fill="#b8922a" text-anchor="middle">&amp;</text>
+      <!-- C bottom — gold italic -->
+      <text x="80" y="36" font-family="Cormorant Garamond, serif" font-weight="300" font-style="italic" font-size="12" fill="#d4af6a" text-anchor="middle">C</text>
+    </svg>
+    <div class="nav-links">
+      <a href="#work-with" class="nav-work">Work With Sanjana</a>
+      <a href="#notify" class="nav-cta">Notify Me</a>
+    </div>
+  </nav>
+  <div class="hero-center">
+    <p class="hero-eyebrow">A podcast &amp; consultancy for the luxury jewelry industry</p>
+    <!-- Hero Logo Lockup — Option B -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="width: clamp(100px, 15vw, 160px); margin-bottom: 2rem;">
+      <!-- Horizontal rules flanking badge -->
+      <line x1="0" y1="60" x2="60" y2="60" stroke="#b8922a" stroke-width="0.6" opacity="0.45"/>
+      <line x1="140" y1="60" x2="200" y2="60" stroke="#b8922a" stroke-width="0.6" opacity="0.45"/>
+      <!-- Outer octagonal badge -->
+      <path d="M78,4 L122,4 L132,14 L132,106 L122,116 L78,116 L68,106 L68,14 Z" fill="none" stroke="#b8922a" stroke-width="2" opacity="0.85"/>
+      <!-- Inner inset -->
+      <path d="M81,10 L119,10 L127,18 L127,102 L119,110 L81,110 L73,102 L73,18 Z" fill="none" stroke="#d4af6a" stroke-width="0.8" opacity="0.45"/>
+      <!-- C top -->
+      <text x="100" y="52" font-family="Cormorant Garamond, serif" font-weight="500" font-size="32" fill="#f7f3ed" text-anchor="middle">C</text>
+      <!-- Ampersand centre -->
+      <text x="100" y="70" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="300" font-size="16" fill="#b8922a" text-anchor="middle">&amp;</text>
+      <!-- C bottom italic -->
+      <text x="100" y="98" font-family="Cormorant Garamond, serif" font-weight="300" font-style="italic" font-size="32" fill="#d4af6a" text-anchor="middle">C</text>
+    </svg>
+    <h1 class="hero-title">
+      Carats
+      <span class="hero-amp">&amp;</span>
+      <em>Connections</em>
+    </h1>
+    <p class="hero-sub">Masterminds in Luxury Jewelry</p>
+    <p class="hero-desc">The conversations happening behind closed doors in luxury jewelry — brought into the open. Every episode, a founder, designer, or industry leader shares what they have actually learned building something real in one of the world's most demanding industries.</p>
+    <div class="hero-actions">
+      <a href="#notify" class="btn-primary">Be the First to Listen</a>
+      <a href="#about" class="btn-secondary">About the Show</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="platform-row">
+      <span class="platform-label">Coming soon to</span>
+      <span class="platform-dot"></span>
+      <span class="platform-name">Spotify</span>
+      <span class="platform-dot"></span>
+      <span class="platform-name">Apple Podcasts</span>
+      <span class="platform-dot"></span>
+      <span class="platform-name">YouTube</span>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<section id="about" style="background: var(--cream); padding: 8rem 5vw;">
+  <div class="about" style="padding: 0; max-width: 1200px; margin: 0 auto;">
+    <div class="reveal">
+      <p class="about-label">About the show</p>
+      <h2 class="about-title">Where experience<br>becomes <em>insight</em></h2>
+      <p class="about-body">The luxury jewelry industry runs on expertise built over decades — and most of it never gets written down. Carats &amp; Connections changes that. Each episode goes deep with the founders, designers, and specialists who have spent careers mastering their craft, their market, and their clientele.</p>
+      <p class="about-body">No surface-level success stories. No rehearsed talking points. Just honest, high-level conversation about what it actually takes to build and sustain a luxury brand in today's market.</p>
+      <div class="about-host">
+        <p class="host-name">Hosted by Sanjana</p>
+        <p class="host-title">20 years in the luxury jewelry industry</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="quote-card">
+        <p class="quote-text">"Podcasting is the next step in marketing that remains authentic. It's hard to fake it when you're talking and the questions keep coming."</p>
+        <p class="quote-source">— Randi Chervitz, Jewelry Artist &amp; Designer</p>
+        <div class="quote-accent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<section class="topics">
+  <div class="topics-inner">
+    <div class="section-header reveal">
+      <span class="section-label">What we cover</span>
+      <h2 class="section-title">Connections that <em>matter</em></h2>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card reveal"><div class="topic-number">01</div><h3 class="topic-title">Building &amp; Protecting a Luxury Brand</h3><p class="topic-body">How independent brands create lasting identity — and defend it against counterfeits, copycats, and market noise.</p></div>
+      <div class="topic-card reveal"><div class="topic-number">02</div><h3 class="topic-title">The Hidden Costs of Retail</h3><p class="topic-body">From employee turnover to wholesale relationships — what the industry rarely talks about, and what it actually costs.</p></div>
+      <div class="topic-card reveal"><div class="topic-number">03</div><h3 class="topic-title">Craft, Scale &amp; Identity</h3><p class="topic-body">The tension every independent maker faces: how to grow without losing the thing that made clients choose you.</p></div>
+      <div class="topic-card reveal"><div class="topic-number">04</div><h3 class="topic-title">The Future of Luxury</h3><p class="topic-body">Lab-grown vs. natural, secondary markets, digital presence — how leaders are navigating the industry's biggest shifts.</p></div>
+      <div class="topic-card reveal"><div class="topic-number">05</div><h3 class="topic-title">Client Relationships at the Highest Level</h3><p class="topic-body">How the best in the business build trust, retain clients, and turn a single sale into a decades-long relationship.</p></div>
+      <div class="topic-card reveal"><div class="topic-number">06</div><h3 class="topic-title">Founding Stories &amp; Hard-Won Lessons</h3><p class="topic-body">The origin stories, pivots, and setbacks that shaped the industry's most interesting independent operators.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="listeners">
+  <div class="listeners-inner">
+    <div class="section-header reveal">
+      <span class="section-label" style="color: var(--gold);">Who this is for</span>
+      <h2 class="section-title" style="color: var(--charcoal);">Built for people who take <em style="color: var(--gold);">this industry seriously</em></h2>
+    </div>
+    <div class="listeners-grid">
+      <div class="listener-item reveal"><h3 class="listener-title">Luxury Retailers</h3><p class="listener-body">Boutiques, high-end fashion, accessories, and home goods retailers navigating the shared challenges of channel strategy, supply chain, and maintaining a luxury brand experience.</p></div>
+      <div class="listener-item reveal"><h3 class="listener-title">Artisans &amp; Craftspeople</h3><p class="listener-body">Those who create high-value, bespoke products and grapple with scaling their craft into a sustainable business — without sacrificing quality or unique identity.</p></div>
+      <div class="listener-item reveal"><h3 class="listener-title">E-commerce Entrepreneurs</h3><p class="listener-body">Anyone running an online business with specialised products in the luxury sector — looking for real guidance on scaling, brand building, and delivering a premium customer experience.</p></div>
+      <div class="listener-item reveal"><h3 class="listener-title">Business Consultants &amp; Coaches</h3><p class="listener-body">Professionals who advise small to medium-sized businesses in retail or luxury — who want sharper insight to better serve their own clients.</p></div>
+      <div class="listener-item reveal"><h3 class="listener-title">Marketing &amp; Branding Professionals</h3><p class="listener-body">Those focused on luxury branding, digital marketing, and customer acquisition in high-value sectors — who want to understand the industry from the inside out.</p></div>
+      <div class="listener-item reveal"><h3 class="listener-title">Aspiring Entrepreneurs &amp; Startups</h3><p class="listener-body">Those in the early stages of launching a luxury brand, bespoke service, or niche retail business — eager to learn from established leaders about concept, funding, supply chain, brand building, and acquiring their first high-value clients.</p></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="notify" id="notify">
+  <div class="notify-inner">
+    <span class="section-label">Launching soon</span>
+    <h2 class="notify-title">Be the first<br>to <em>listen</em></h2>
+    <p class="notify-body">The first episodes are in production. Leave your email and we'll notify you the moment Carats &amp; Connections goes live — plus early access to guest announcements.</p>
+    <div class="notify-form">
+      <input class="notify-input" type="email" placeholder="Your email address">
+      <button class="notify-btn">Notify Me</button>
+    </div>
+    <p class="notify-note">No spam. One email when we launch.</p>
+  </div>
+</section>
+
+<footer>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 44" height="34" opacity="0.7">
+    <!-- Left rule -->
+    <line x1="0" y1="22" x2="52" y2="22" stroke="#b8922a" stroke-width="0.5" opacity="0.5"/>
+    <!-- Right rule -->
+    <line x1="108" y1="22" x2="160" y2="22" stroke="#b8922a" stroke-width="0.5" opacity="0.5"/>
+    <!-- Outer octagonal badge -->
+    <path d="M68,2 L92,2 L96,6 L96,38 L92,42 L68,42 L64,38 L64,6 Z" fill="none" stroke="#b8922a" stroke-width="1.8" opacity="0.85"/>
+    <!-- Inner inset -->
+    <path d="M70,5 L90,5 L93,8 L93,36 L90,39 L70,39 L67,36 L67,8 Z" fill="none" stroke="#d4af6a" stroke-width="0.7" opacity="0.45"/>
+    <!-- C top — white -->
+    <text x="80" y="18" font-family="Cormorant Garamond, serif" font-weight="500" font-size="12" fill="#f7f3ed" text-anchor="middle">C</text>
+    <!-- Ampersand -->
+    <text x="80" y="27" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="300" font-size="7" fill="#b8922a" text-anchor="middle">&amp;</text>
+    <!-- C bottom — gold italic -->
+    <text x="80" y="36" font-family="Cormorant Garamond, serif" font-weight="300" font-style="italic" font-size="12" fill="#d4af6a" text-anchor="middle">C</text>
+  </svg>
+  <span class="footer-copy">&copy; 2026 Carats &amp; Connections. All rights reserved. &nbsp;·&nbsp; <a href="https://sovereigntechconsultants.com" target="_blank" style="color: rgba(212,175,106,0.25); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='rgba(212,175,106,0.5)'" onmouseout="this.style.color='rgba(212,175,106,0.25)'">Sovereign Tech Consultants</a></span>
+</footer>
+
+<script>
+  const allReveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  allReveals.forEach(el => {
+    observer.observe(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('visible');
+  });
+  document.querySelector('.notify-btn').addEventListener('click', () => {
+    const input = document.querySelector('.notify-input');
+    if (input.value && input.value.includes('@')) { input.value = ''; input.placeholder = "You're on the list — thank you."; }
+  });
+</script>
+</body>
+</html>
